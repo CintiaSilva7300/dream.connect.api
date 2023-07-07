@@ -8,9 +8,9 @@ app.post('/', function (req, res) {
   videoController.create(req, res);
 });
 
-// app.get('/:code', function (req, res) {
-//   testController.getOneByCode(req, res)
-// })
+app.get('/:code', function (req, res) {
+  videoController.getOneByCode(req, res);
+});
 
 app.get('/', function (req, res) {
   videoController.getAll(req, res);

@@ -17,11 +17,11 @@ class VideoRepository {
     return video;
   }
 
-  // async getOneByCode({ code }) {
-  //   const filter = { code };
-  //   const test = await this.testRepository.findOne(filter);
-  //   return test;
-  // }
+  async getOneByCode({ code }) {
+    const filter = { code };
+    const video = await this.videoRepository.findOne(filter);
+    return video;
+  }
 
   async getAll() {
     const video = await this.videoRepository.find();
@@ -34,9 +34,15 @@ class VideoRepository {
   //   return test;
   // }
 
-  async updateVideoByCode({ code }) {
+  async updateVideoByCode({ code, name, value, date, type }) {
+    const body = {
+      name,
+      value,
+      date,
+      type,
+    };
     const filter = { code };
-    const video = await this.videoRepository.updateMany(filter);
+    const video = await this.videoRepository.findOneAndUpdate(filter, body);
     return video;
   }
 }
