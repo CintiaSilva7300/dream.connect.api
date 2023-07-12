@@ -1,19 +1,19 @@
-const VideoController = require('../controllers/video');
+const PostController = require('../controllers/post');
 
 let app = require('express').Router();
 
-const videoController = new VideoController();
+const postController = new PostController();
 
 app.post('/', function (req, res) {
-  videoController.create(req, res);
+  postController.create(req, res);
 });
 
 app.get('/:code', function (req, res) {
-  videoController.getOneByCode(req, res);
+  postController.getOneByCode(req, res);
 });
 
 app.get('/', function (req, res) {
-  videoController.getAll(req, res);
+  postController.getAll(req, res);
 });
 
 // app.delete('/:code', function (req, res) {
@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 // })
 
 app.put('/:code', function (req, res) {
-  videoController.updateByCode(req, res);
+  postController.updateByCode(req, res);
 });
 
 module.exports = app;
