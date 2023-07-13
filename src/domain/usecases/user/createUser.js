@@ -40,7 +40,6 @@ class CreateUser {
       birthDate,
       password: hashPassword,
       status: true,
-      confirmPassword,
       typeLogin: 'email',
     });
     const token = this.authenticateUser.execute({ email, password });
