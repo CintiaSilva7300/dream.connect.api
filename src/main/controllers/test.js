@@ -14,48 +14,48 @@ class TestController {
       const test = await createTest.execute({ name, value, date, type });
       return res.status(200).json(test);
     } catch (error) {
-      console.log(error);
+      error;
       return res.status(400).json({ message: error.message });
     }
   }
 
-  // async getOneByCode(req, res) {
-  //   try {
-  //     const { code } = req.params
-  //     const testRepository = new TestRepository()
-  //     const getTestByCode = new GetTestByCode(testRepository)
-  //     const test = await getTestByCode.execute({ code })
-  //     return res.status(200).json(test)
-  //   } catch (error) {
-  //     console.log(error)
-  //     return res.status(400).json({ message: error.message })
-  //   }
-  // }
+  async getOneByCode(req, res) {
+    try {
+      const { code } = req.params;
+      const testRepository = new TestRepository();
+      const getTestByCode = new GetTestByCode(testRepository);
+      const test = await getTestByCode.execute({ code });
+      return res.status(200).json(test);
+    } catch (error) {
+      error;
+      return res.status(400).json({ message: error.message });
+    }
+  }
 
-  // async getAll(req, res) {
-  //   try {
-  //     const testRepository = new TestRepository()
-  //     const getAllTests = new GetAllTests(testRepository)
-  //     const test = await getAllTests.execute()
-  //     return res.status(200).json(test)
-  //   } catch (error) {
-  //     console.log(error)
-  //     return res.status(400).json({ message: error.message })
-  //   }
-  // }
+  async getAll(req, res) {
+    try {
+      const testRepository = new TestRepository();
+      const getAllTests = new GetAllTests(testRepository);
+      const test = await getAllTests.execute();
+      return res.status(200).json(test);
+    } catch (error) {
+      error;
+      return res.status(400).json({ message: error.message });
+    }
+  }
 
-  // async deleteByCode(req, res) {
-  //   try {
-  //     const { code } = req.params
-  //     const testRepository = new TestRepository()
-  //     const deleteTestByCode = new DeleteTestByCode(testRepository)
-  //     const result = await deleteTestByCode.execute({ code })
-  //     return res.status(200).json(result)
-  //   } catch (error) {
-  //     console.log(error)
-  //     return res.status(400).json({ message: error.message })
-  //   }
-  // }
+  async deleteByCode(req, res) {
+    try {
+      const { code } = req.params;
+      const testRepository = new TestRepository();
+      const deleteTestByCode = new DeleteTestByCode(testRepository);
+      const result = await deleteTestByCode.execute({ code });
+      return res.status(200).json(result);
+    } catch (error) {
+      error;
+      return res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = TestController;

@@ -5,11 +5,11 @@ const GetAllPosts = require('../../domain/usecases/post/getAllPosts');
 const GetPostByCode = require('../../domain/usecases/post/getPostByCode');
 const SECRET_KEY_JWT = process.env.SECRET_KEY_JWT;
 const jwt = require('jsonwebtoken');
+const UserRepository = require('../../infra/repository/userRepository');
 class PostController {
   async create(req, res) {
     try {
       const token = req.headers['authorization'];
-      // console.log('passou por aqui -> ', token);
 
       if (!token) {
         throw new Error('È nescessario estár logado!');
@@ -50,7 +50,8 @@ class PostController {
   async getAll(req, res) {
     try {
       const postRepository = new PostRepository();
-      const getAllPosts = new GetAllPosts(postRepository);
+      const userRepository = new UserRepository();
+      const getAllPosts = new GetAllPosts(postRepository, userRepository);
       const post = await getAllPosts.execute();
       return res.status(200).json(post);
     } catch (error) {
@@ -75,7 +76,6 @@ class PostController {
   async updateByCode(req, res) {
     try {
       const token = req.headers['authorization'];
-      console.log('passou por aqui -> ', token);
 
       if (!token) {
         throw new Error('È nescessario estár logado!');
@@ -99,7 +99,7 @@ class PostController {
       });
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
+      error;
       return res.status(400).json({ message: error.message });
     }
   }

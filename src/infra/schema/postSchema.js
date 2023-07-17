@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 const Post = new Schema({
   code: { type: String, required: true },
   text: { type: String, required: false },
-  // value: { type: Number, required: true },
-  // date: { type: Date, required: true },
-  // type: { type: String, required: false, default: 'Entreternimento' },
+  userCode: { type: String, required: true },
   url_media: { type: String, required: false },
   status: { type: Boolean, required: true, default: true },
   registerDate: { type: Date, default: Date.now },

@@ -1,3 +1,4 @@
+const { use } = require('../../main/routes/user');
 const { generateCode } = require('../../utils/generateCode');
 const UserSchema = require('../schema/user');
 
@@ -36,14 +37,9 @@ class UserRepository {
     return user;
   }
 
-  async getAll() {
-    const user = await this.userRepository.find();
-    return user;
-  }
-
-  async deleteByCode({ code }) {
+  async GetUserByCode({ code }) {
     const filter = { code };
-    const user = await this.userRepository.deleteOne(filter);
+    const user = await this.userRepository.findOne(filter);
     return user;
   }
 
@@ -55,7 +51,21 @@ class UserRepository {
     return user;
   }
 
+  async getAll() {
+    //ajust
+    const user = await this.userRepository.find();
+    return user;
+  }
+
+  async deleteByCode({ code }) {
+    //ajust
+    const filter = { code };
+    const user = await this.userRepository.deleteOne(filter);
+    return user;
+  }
+
   async updateByCode({ code, body }) {
+    //ajust
     const filter = { code: code };
     const user = await this.userRepository.findOneAndUpdate(filter, body);
     return user;

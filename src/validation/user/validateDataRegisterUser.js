@@ -24,15 +24,11 @@ class ValidateDataRegisterUser {
       throw new Error('Senha é um campo obrigatorio.');
     }
 
-    // const userFinded = await this.userRepository.findByEmailOrCpf({
-    //   email,
-    // });
+    const userFinded = await this.userRepository.findByEmail(email);
 
-    // if (userFinded) {
-    //   if (userFinded.email === email) {
-    //     throw new Error('Email já cadastrado');
-    //   }
-    // }
+    if (userFinded) {
+      throw new Error('O Email já se encontra cadastrado!');
+    }
 
     return false;
   }

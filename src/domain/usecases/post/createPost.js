@@ -9,9 +9,9 @@ class CreatePost {
     }
 
     const post = await this.postRepository.create({
+      userCode,
       text,
       url_media,
-      userCode,
     });
     return post;
   }

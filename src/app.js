@@ -8,7 +8,6 @@ const postRoutes = require('./main/routes/postRoutes');
 const userRoutes = require('./main/routes/user');
 
 const app = express();
-
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -3,6 +3,7 @@ const CreateUser = require('../../domain/usecases/user/createUser');
 const AuthenticateUser = require('../../domain/usecases/user/authenticateUser');
 const ValidateDataRegisterUser = require('../../validation/user/validateDataRegisterUser');
 const ValidateEmail = require('../../validation/user/validateEmail');
+const GetOneUser = require('../../domain/usecases/user/getOneUser');
 
 class UserController {
   async create(req, res) {
@@ -58,9 +59,21 @@ class UserController {
 
       const authenticateUser = new AuthenticateUser(userRepository);
       const token = await authenticateUser.execute({ email, password });
-      console.log('token -> ', token);
 
       return res.status(200).json(token);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
+  async getOneByCode(req, res) {
+    try {
+      const { code } = req.params;
+      const userRepository = new UserRepository();
+      const getOneUser = new GetOneUser(userRepository);
+      const user = await getOneUser.execute({ code });
+      return res.status(200).json(user);
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: error.message });

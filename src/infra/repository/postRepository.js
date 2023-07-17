@@ -18,7 +18,6 @@ class PostRepository {
 
   async getOneByCode({ code }) {
     const filter = { code };
-    console.log('getOneByCode ->', code);
     const post = await this.postRepository.findOne(filter);
     return post;
   }
