@@ -19,8 +19,8 @@ class UserController {
         confirmPassword,
       } = req.body;
 
-      const userRepository = new UserRepository();
       const validateEmail = new ValidateEmail();
+      const userRepository = new UserRepository();
       // const createUser = new CreateUser(userRepository);
 
       const validateDataRegisterUser = new ValidateDataRegisterUser(
@@ -56,8 +56,12 @@ class UserController {
     try {
       const { email, password } = req.body;
       const userRepository = new UserRepository();
+      // const validateEmail = new ValidateEmail();
 
-      const authenticateUser = new AuthenticateUser(userRepository);
+      const authenticateUser = new AuthenticateUser(
+        userRepository
+        // validateEmail
+      );
       const token = await authenticateUser.execute({ email, password });
 
       return res.status(200).json(token);

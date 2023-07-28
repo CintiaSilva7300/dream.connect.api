@@ -1,19 +1,20 @@
 class CreateComment {
-  constructor(postRepository) {
-    this.postRepository = postRepository;
+  constructor(commentRepository) {
+    this.commentRepository = commentRepository;
   }
 
-  async execute({ text, url_media, userCode }) {
+  async execute({ text, url_media, userCode, postCode }) {
     if (!text && !url_media) {
       return 'Pelo menos um dos campos deve ser preenchido.';
     }
 
-    const post = await this.postRepository.create({
+    const comment = await this.commentRepository.create({
       text,
       url_media,
       userCode,
+      postCode,
     });
-    return post;
+    return comment;
   }
 }
 

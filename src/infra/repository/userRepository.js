@@ -1,4 +1,3 @@
-const { use } = require('../../main/routes/user');
 const { generateCode } = require('../../utils/generateCode');
 const UserSchema = require('../schema/user');
 
@@ -40,6 +39,7 @@ class UserRepository {
   async GetUserByCode({ code }) {
     const filter = { code };
     const user = await this.userRepository.findOne(filter);
+    // console.log('----> ', user);
     return user;
   }
 

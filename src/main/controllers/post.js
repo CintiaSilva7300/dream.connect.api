@@ -6,6 +6,7 @@ const GetPostByCode = require('../../domain/usecases/post/getPostByCode');
 const SECRET_KEY_JWT = process.env.SECRET_KEY_JWT;
 const jwt = require('jsonwebtoken');
 const UserRepository = require('../../infra/repository/userRepository');
+const CommentRepository = require('../../infra/repository/commentRepository');
 class PostController {
   async create(req, res) {
     try {
@@ -51,27 +52,20 @@ class PostController {
     try {
       const postRepository = new PostRepository();
       const userRepository = new UserRepository();
-      const getAllPosts = new GetAllPosts(postRepository, userRepository);
+      const commentRepository = new CommentRepository();
+      const getAllPosts = new GetAllPosts(
+        postRepository,
+        userRepository,
+        commentRepository
+      );
       const post = await getAllPosts.execute();
+      console.log(post);
       return res.status(200).json(post);
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: error.message });
     }
   }
-
-  // async deleteByCode(req, res) {
-  //   try {
-  //     const { code } = req.params
-  //     const testRepository = new TestRepository()
-  //     const deleteTestByCode = new DeleteTestByCode(testRepository)
-  //     const result = await deleteTestByCode.execute({ code })
-  //     return res.status(200).json(result)
-  //   } catch (error) {
-  //     console.log(error)
-  //     return res.status(400).json({ message: error.message })
-  //   }
-  // }
 
   async updateByCode(req, res) {
     try {

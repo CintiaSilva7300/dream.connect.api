@@ -8,11 +8,16 @@ class AuthenticateUser {
   }
 
   async execute({ email, password }) {
-    if (!email || !password) {
-      throw new Error('Email e senha são obrigatorios');
+    if (!email || typeof email !== 'string') {
+      throw new Error('Email é invalido!');
+    }
+
+    if (!password) {
+      throw new Error('Senha  é obrigatorio!');
     }
 
     const userFinded = await this.userRepository.findByEmail(email);
+
     if (!userFinded) {
       throw new Error('Usuário não cadastrado');
     }

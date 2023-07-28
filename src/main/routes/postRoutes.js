@@ -1,10 +1,11 @@
+const UploadImageService = require('../../services/uploadImageService.js');
 const PostController = require('../controllers/post');
 
 let app = require('express').Router();
 
 const postController = new PostController();
 
-app.post('/', function (req, res) {
+app.post('/', async function (req, res) {
   postController.create(req, res);
 });
 

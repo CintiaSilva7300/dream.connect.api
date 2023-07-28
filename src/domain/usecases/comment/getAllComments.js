@@ -1,10 +1,9 @@
 const user = require('../../../infra/schema/user');
 
-class GetAllPosts {
-  constructor(postRepository, userRepository, commentRepository) {
+class GetAllComments {
+  constructor(postRepository, userRepository) {
     this.postRepository = postRepository;
     this.userRepository = userRepository;
-    this.commentRepository = commentRepository;
   }
 
   async execute() {
@@ -14,7 +13,6 @@ class GetAllPosts {
         const user = await this.userRepository.GetUserByCode({
           code: item.userCode,
         });
-        const comments = await this.commentRepository.getByCodePost(item.code);
         return {
           ...item._doc,
           user: {
@@ -26,7 +24,6 @@ class GetAllPosts {
             birthDate: user?.birthDate,
             registerDate: user?.registerDate,
           },
-          comments,
         };
       })
     );
@@ -34,4 +31,4 @@ class GetAllPosts {
   }
 }
 
-module.exports = GetAllPosts;
+module.exports = GetAllComments;
