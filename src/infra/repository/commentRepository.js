@@ -30,7 +30,7 @@ class CommentRepository {
 
   async getByCodePost(code) {
     const filter = { postCode: code };
-    const comments = await this.commentRepository.find(filter);
+    const comments = await this.commentRepository.find(filter).lean();
     return comments;
   }
 }

@@ -9,12 +9,33 @@ class GetAllPosts {
 
   async execute() {
     const post = await this.postRepository.getAll();
+
     const posts = await Promise.all(
       post.map(async (item) => {
         const user = await this.userRepository.GetUserByCode({
           code: item.userCode,
         });
+
         const comments = await this.commentRepository.getByCodePost(item.code);
+
+        const comment = await Promise.all(
+          comments.map(async (user) => {
+            const userBody = await this.userRepository.GetUserByCode({
+              code: user.userCode,
+            });
+            return {
+              ...user,
+              user: {
+                name: userBody.name,
+                email: userBody.email,
+                secondName: userBody.secondName,
+                registerDate: userBody.registerDate,
+              },
+            };
+          })
+        );
+        console.log('->>', comment);
+        // const curtida = await this.commentRepository.getByCodePost(item.curti);
         return {
           ...item._doc,
           user: {
@@ -26,7 +47,8 @@ class GetAllPosts {
             birthDate: user?.birthDate,
             registerDate: user?.registerDate,
           },
-          comments,
+
+          comments: comment,
         };
       })
     );
