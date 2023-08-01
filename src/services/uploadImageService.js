@@ -1,3 +1,0 @@
-class UploadImageService {
-  async execute() {}
-}

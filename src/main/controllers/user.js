@@ -15,6 +15,7 @@ class UserController {
         telephone,
         genre,
         birthDate,
+        image,
         password,
         confirmPassword,
       } = req.body;
@@ -42,6 +43,7 @@ class UserController {
         telephone,
         genre,
         birthDate,
+        image,
         password,
         confirmPassword,
       });

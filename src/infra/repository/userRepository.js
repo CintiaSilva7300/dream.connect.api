@@ -15,6 +15,7 @@ class UserRepository {
     birthDate,
     password,
     confirmPassword,
+    image,
   }) {
     const user = await this.userRepository.create({
       code: generateCode('USER'),
@@ -26,6 +27,7 @@ class UserRepository {
       birthDate,
       password,
       confirmPassword,
+      image,
     });
     return user;
   }

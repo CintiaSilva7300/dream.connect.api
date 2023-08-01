@@ -3,7 +3,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 require('./infra/config/database');
-const testRoutes = require('./main/routes/test');
 const postRoutes = require('./main/routes/postRoutes');
 const userRoutes = require('./main/routes/user');
 const comment = require('./main/routes/comment');
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 
 app.use(express.json());
 
-app.use('/test', testRoutes);
 app.use('/post', postRoutes);
 app.use('/user', userRoutes);
 app.use('/comment', comment);

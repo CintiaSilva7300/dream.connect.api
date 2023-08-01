@@ -15,6 +15,7 @@ class CreateUser {
     telephone,
     genre,
     birthDate,
+    image,
     password,
     confirmPassword,
   }) {
@@ -25,6 +26,7 @@ class CreateUser {
       telephone,
       genre,
       birthDate,
+      image,
       password,
       confirmPassword,
     });
@@ -38,6 +40,7 @@ class CreateUser {
       telephone,
       genre,
       birthDate,
+      image,
       password: hashPassword,
       status: true,
       typeLogin: 'email',

@@ -31,9 +31,13 @@ class AuthenticateUser {
       {
         id: userFinded._id,
         email: userFinded.email,
+        secondName: userFinded.secondName,
         name: userFinded.name,
         code: userFinded.code,
-        companyCode: userFinded.companyCode,
+        image: userFinded.image,
+        telephone: userFinded.telephone,
+        genre: userFinded.genre,
+        birthDate: userFinded.birthDate,
       },
       SECRET_KEY_JWT
     );

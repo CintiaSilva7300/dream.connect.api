@@ -1,4 +1,3 @@
-const UploadImageService = require('../../services/uploadImageService.js');
 const PostController = require('../controllers/post');
 
 let app = require('express').Router();
