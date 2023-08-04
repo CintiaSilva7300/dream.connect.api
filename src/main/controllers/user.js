@@ -22,7 +22,6 @@ class UserController {
 
       const validateEmail = new ValidateEmail();
       const userRepository = new UserRepository();
-      // const createUser = new CreateUser(userRepository);
 
       const validateDataRegisterUser = new ValidateDataRegisterUser(
         userRepository,
@@ -49,7 +48,6 @@ class UserController {
       });
       return res.status(200).json({ ...token });
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: error.message });
     }
   }
@@ -68,7 +66,6 @@ class UserController {
 
       return res.status(200).json(token);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: error.message });
     }
   }
@@ -81,7 +78,6 @@ class UserController {
       const user = await getOneUser.execute({ code });
       return res.status(200).json(user);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: error.message });
     }
   }

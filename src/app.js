@@ -6,7 +6,7 @@ require('./infra/config/database');
 const postRoutes = require('./main/routes/postRoutes');
 const userRoutes = require('./main/routes/user');
 const comment = require('./main/routes/comment');
-const upload = require('./main/routes/upload');
+const file = require('./main/routes/file');
 
 const app = express();
 app.use(cors());
@@ -19,6 +19,6 @@ app.use(express.json());
 app.use('/post', postRoutes);
 app.use('/user', userRoutes);
 app.use('/comment', comment);
-app.use('/upload', upload);
+app.use('/file', file);
 
 module.exports = app;

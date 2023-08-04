@@ -34,7 +34,6 @@ class GetAllPosts {
             };
           })
         );
-        console.log('->>', comment);
         // const curtida = await this.commentRepository.getByCodePost(item.curti);
         return {
           ...item._doc,

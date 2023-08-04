@@ -59,10 +59,8 @@ class PostController {
         commentRepository
       );
       const post = await getAllPosts.execute();
-      console.log(post);
       return res.status(200).json(post);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: error.message });
     }
   }

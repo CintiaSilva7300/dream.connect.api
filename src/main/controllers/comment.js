@@ -42,7 +42,6 @@ class CommentController {
       const commentRepository = new CommentRepository();
       const getCommentByCode = new GetCommentByCode(commentRepository);
       const comment = await getCommentByCode.execute({ code });
-      console.log(comment);
       return res.status(200).json(comment);
     } catch (error) {
       return res.status(400).json({ message: error.message });
@@ -58,7 +57,6 @@ class CommentController {
         userRepository
       );
       const comment = await getAllComments.execute();
-      console.log(comment);
       return res.status(200).json(comment);
     } catch (error) {
       return res.status(400).json({ message: error.message });

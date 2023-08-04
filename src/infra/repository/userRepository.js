@@ -41,7 +41,6 @@ class UserRepository {
   async GetUserByCode({ code }) {
     const filter = { code };
     const user = await this.userRepository.findOne(filter);
-    // console.log('----> ', user);
     return user;
   }
 
