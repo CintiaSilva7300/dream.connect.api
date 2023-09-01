@@ -1,6 +1,6 @@
 const user = require('../../../infra/schema/user');
 
-class GetAllComments {
+class GetAllLikes {
   constructor(postRepository, userRepository) {
     this.postRepository = postRepository;
     this.userRepository = userRepository;
@@ -32,4 +32,4 @@ class GetAllComments {
   }
 }
 
-module.exports = GetAllComments;
+module.exports = GetAllLikes;

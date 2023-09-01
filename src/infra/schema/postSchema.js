@@ -6,8 +6,8 @@ const Post = new Schema({
   text: { type: String, required: false },
   userCode: { type: String, required: true },
   url_media: { type: String, required: false },
-  status: { type: Boolean, required: true, default: true },
   registerDate: { type: Date, default: Date.now },
+  status: { type: Boolean, required: true, default: true },
 });
 
 module.exports = mongoose.model('Post', Post);

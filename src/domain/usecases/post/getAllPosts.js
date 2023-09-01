@@ -1,10 +1,11 @@
 const user = require('../../../infra/schema/user');
 
 class GetAllPosts {
-  constructor(postRepository, userRepository, commentRepository) {
+  constructor(postRepository, userRepository, commentRepository, likeRepository) {
     this.postRepository = postRepository;
     this.userRepository = userRepository;
     this.commentRepository = commentRepository;
+    this.likeRepository = likeRepository;
   }
 
   async execute() {
@@ -26,6 +27,7 @@ class GetAllPosts {
             return {
               ...user,
               user: {
+                image: userBody.image,
                 name: userBody.name,
                 email: userBody.email,
                 secondName: userBody.secondName,
@@ -34,7 +36,7 @@ class GetAllPosts {
             };
           })
         );
-        // const curtida = await this.commentRepository.getByCodePost(item.curti);
+
         return {
           ...item._doc,
           user: {
@@ -46,7 +48,6 @@ class GetAllPosts {
             birthDate: user?.birthDate,
             registerDate: user?.registerDate,
           },
-
           comments: comment,
         };
       })
