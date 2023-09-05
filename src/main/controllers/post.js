@@ -3,10 +3,12 @@ const PostRepository = require('../../infra/repository/postRepository');
 const UpdatePostByCode = require('../../domain/usecases/post/updatePostByCode');
 const GetAllPosts = require('../../domain/usecases/post/getAllPosts');
 const GetPostByCode = require('../../domain/usecases/post/getPostByCode');
+const GetLikeByCode = require('../../domain/usecases/like/getLikeByCode');
 const SECRET_KEY_JWT = process.env.SECRET_KEY_JWT;
 const jwt = require('jsonwebtoken');
 const UserRepository = require('../../infra/repository/userRepository');
 const CommentRepository = require('../../infra/repository/commentRepository');
+const LikeRepository = require('../../infra/repository/likeRepository');
 class PostController {
   async create(req, res) {
     try {
@@ -53,10 +55,13 @@ class PostController {
       const postRepository = new PostRepository();
       const userRepository = new UserRepository();
       const commentRepository = new CommentRepository();
+      const likeRepository = new LikeRepository();
       const getAllPosts = new GetAllPosts(
         postRepository,
         userRepository,
-        commentRepository
+        commentRepository,
+        likeRepository
+        
       );
       const post = await getAllPosts.execute();
       return res.status(200).json(post);

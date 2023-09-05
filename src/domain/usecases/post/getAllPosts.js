@@ -9,6 +9,7 @@ class GetAllPosts {
   }
 
   async execute() {
+
     const post = await this.postRepository.getAll();
 
     const posts = await Promise.all(
@@ -16,6 +17,27 @@ class GetAllPosts {
         const user = await this.userRepository.GetUserByCode({
           code: item.userCode,
         });
+
+        // const likes = await this.likeRepository.getByCodePost(item.code);
+        const likes = await this.likeRepository.getByCodePost(item.code);
+
+        // Mapeie os likes para incluir informações do usuário que curtiu
+        const likeInfo = await Promise.all(
+          likes.map(async (like) => {
+            const liker = await this.userRepository.GetUserByCode({
+              code: like.userCode,
+            });
+            return {
+              user: {
+                image: liker.image,
+                name: liker.name,
+                email: liker.email,
+                secondName: liker.secondName,
+                registerDate: liker.registerDate,
+              },
+            };
+          })
+        );
 
         const comments = await this.commentRepository.getByCodePost(item.code);
 
@@ -29,13 +51,11 @@ class GetAllPosts {
               user: {
                 image: userBody.image,
                 name: userBody.name,
-                email: userBody.email,
-                secondName: userBody.secondName,
-                registerDate: userBody.registerDate,
               },
             };
           })
         );
+
 
         return {
           ...item._doc,
@@ -49,6 +69,7 @@ class GetAllPosts {
             registerDate: user?.registerDate,
           },
           comments: comment,
+          likes: likeInfo
         };
       })
     );

@@ -16,22 +16,22 @@ class LikeRepository {
     return post;
   }
 
-  // async getOneByCode({ code }) {
-  //   const filter = { code };
-  //   const like = await this.likeRepository.findOne(filter);
-  //   return like;
-  // }
+  async getOneByCode({ code }) {
+    const filter = { code };
+    const like = await this.likeRepository.findOne(filter);
+    return like;
+  }
 
-  // async getAll() {
-  //   const like = await this.likeRepository.find();
-  //   return like;
-  // }
+  async getAll() {
+    const like = await this.likeRepository.find();    
+    return like;
+  }
 
-  // async getByCodePost(code) {
-  //   const filter = { postCode: code };
-  //   const likes = await this.likeRepository.find(filter).lean();
-  //   return likes;
-  // }
+  async getByCodePost(code) {
+    const filter = { postCode: code };
+    const likes = await this.likeRepository.find(filter).lean();
+    return likes;
+  }
 }
 
 module.exports = LikeRepository;

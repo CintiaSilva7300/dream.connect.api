@@ -23,7 +23,7 @@ class PostRepository {
   }
 
   async getAll() {
-    const post = await this.postRepository.find();
+    const post = await this.postRepository.find({});
     return post;
   }
 

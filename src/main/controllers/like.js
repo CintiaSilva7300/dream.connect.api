@@ -2,9 +2,11 @@ const CreateLike = require('../../domain/usecases/like/createLike');
 const LikeRepository = require('../../infra/repository/likeRepository');
 const UserRepository = require('../../infra/repository/userRepository');
 const GetAllLikes = require('../../domain/usecases/like/getAllLikes');
+const GetLikeByCode = require('../../domain/usecases/like/getLikeByCode');
 
 const SECRET_KEY_JWT = process.env.SECRET_KEY_JWT;
 const jwt = require('jsonwebtoken');
+const PostRepository = require('../../infra/repository/postRepository');
 
 class LikeController {
   async create(req, res) {
@@ -37,9 +39,20 @@ class LikeController {
     }
   }
 
+  async getOneByCode(req, res) {
+    try {
+      const { code } = req.params;
+      const likeRepository = new LikeRepository();
+      const getLikeByCode = new GetLikeByCode(likeRepository);
+      const like = await getLikeByCode.execute({ code });
+      return res.status(200).json(like );
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
   async getAll(req, res) {
     try {
-      console.log('chegou aqui');
       const likeRepository = new LikeRepository();
       const userRepository = new UserRepository();
       const getAllLikes = new GetAllLikes(
@@ -47,7 +60,7 @@ class LikeController {
         userRepository
       );
       const like = await getAllLikes.execute();
-      console.log('chegou aqui 1');
+
       return res.status(200).json(like);
     } catch (error) {
       return res.status(400).json({ message: error.message });
