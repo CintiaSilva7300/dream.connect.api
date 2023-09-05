@@ -4,8 +4,9 @@ class CreatePost {
   }
 
   async execute({ text, url_media, userCode }) {
-    if (!text && !url_media) {
-      return 'Pelo menos um dos campos deve ser preenchido.';
+
+    if (!url_media) {
+      return 'È obrigatorio inserir uma imagem.';
     }
 
     const post = await this.postRepository.create({

@@ -5,7 +5,7 @@ const Post = new Schema({
   code: { type: String, required: true },
   text: { type: String, required: false },
   userCode: { type: String, required: true },
-  url_media: { type: String, required: false },
+  url_media: { type: String, required: true },
   registerDate: { type: Date, default: Date.now },
   status: { type: Boolean, required: true, default: true },
 });
