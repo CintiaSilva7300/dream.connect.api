@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const UserRepository = require('../../infra/repository/userRepository');
 const CommentRepository = require('../../infra/repository/commentRepository');
 const LikeRepository = require('../../infra/repository/likeRepository');
+const GetLikedPostByUserCode = require('../../domain/usecases/post/getLikedPostByUserCode');
 class PostController {
   async create(req, res) {
     try {
@@ -32,6 +33,21 @@ class PostController {
         userCode,
       });
       return res.status(200).json(post);
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+
+  async getLikedPostByUserCode(req, res) {
+    try {
+      const postRepository = new PostRepository();
+      const likeRepository = new LikeRepository()
+      const userRepository = new UserRepository()
+      const commentRepository = new CommentRepository()
+      const getLikedPostByUserCode = new GetLikedPostByUserCode(postRepository, likeRepository, userRepository,commentRepository)
+      const response = await getLikedPostByUserCode.execute({userCode: req.userCode})
+
+      return res.status(200).json(response);
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }

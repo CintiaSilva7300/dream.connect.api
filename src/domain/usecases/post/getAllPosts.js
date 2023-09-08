@@ -61,6 +61,7 @@ class GetAllPosts {
           ...item._doc,
           user: {
             name: user?.name,
+            image: user?.image,
             secondName: user?.secondName,
             email: user?.email,
             telephone: user?.telephone,

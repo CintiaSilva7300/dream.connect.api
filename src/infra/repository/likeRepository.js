@@ -32,6 +32,12 @@ class LikeRepository {
     const likes = await this.likeRepository.find(filter).lean();
     return likes;
   }
+
+  async getLikesByUserCode(userCode) {
+    const filter = { userCode };
+    const likes = await this.likeRepository.find(filter).lean();
+    return likes;
+  }
 }
 
 module.exports = LikeRepository;

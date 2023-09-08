@@ -33,6 +33,12 @@ class CommentRepository {
     const comments = await this.commentRepository.find(filter).lean();
     return comments;
   }
+
+  async getCommentsByCodesPosts(codes) {
+    const filter = { postCode: {$in: codes} };
+    const comments = await this.commentRepository.find(filter).lean();
+    return comments;
+  }
 }
 
 module.exports = CommentRepository;

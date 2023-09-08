@@ -11,7 +11,6 @@ const PostRepository = require('../../infra/repository/postRepository');
 class LikeController {
   async create(req, res) {
     try {
-      console.log("====>", req.body);
       const token = req.headers['authorization'];
 
       if (!token) {

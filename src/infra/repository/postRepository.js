@@ -27,6 +27,12 @@ class PostRepository {
     return post;
   }
 
+  async getPostsByCodes(codes) {
+    const filter = {code: {$in: codes}}
+    const post = await this.postRepository.find(filter).lean();
+    return post;
+  }
+
   // async deleteByCode({ code }) {
   //   const filter = { code };
   //   const test = await this.testRepository.deleteOne(filter);

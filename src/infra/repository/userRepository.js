@@ -58,6 +58,12 @@ class UserRepository {
     return user;
   }
 
+  async getUsersByCodes(codes) {
+    const filter = {code: {$in: codes}}
+    const users = await this.userRepository.find(filter).lean();
+    return users;
+  }
+
   async deleteByCode({ code }) {
     //ajust
     const filter = { code };

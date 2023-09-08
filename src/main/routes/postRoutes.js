@@ -1,4 +1,5 @@
 const PostController = require('../controllers/post');
+const isAuthenticated = require('../middlewares/isAuthenticated');
 
 let app = require('express').Router();
 
@@ -6,6 +7,10 @@ const postController = new PostController();
 
 app.post('/', async function (req, res) {
   postController.create(req, res);
+});
+
+app.get('/getLikedPostByUserCode',isAuthenticated, async function (req, res) {
+  postController.getLikedPostByUserCode(req, res);
 });
 
 app.get('/:code', function (req, res) {
