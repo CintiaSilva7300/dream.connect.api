@@ -29,6 +29,7 @@ class GetAllPosts {
             });
             return {
               user: {
+                userCode:liker.userCode,
                 image: liker.image,
                 name: liker.name,
                 email: liker.email,
