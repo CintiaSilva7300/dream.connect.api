@@ -45,6 +45,7 @@ class CreateUser {
       status: true,
       typeLogin: 'email',
     });
+    
     const token = this.authenticateUser.execute({ email, password });
     return token;
   }

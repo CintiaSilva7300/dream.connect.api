@@ -20,10 +20,6 @@ app.get('/', function (req, res) {
   userController.getAll(req, res);
 });
 
-// app.delete('/:code', function (req, res) {
-//   testController.deleteByCode(req, res);
-// });
-
 app.put('/:code', function (req, res) {
   userController.updateByCode(req, res);
 });

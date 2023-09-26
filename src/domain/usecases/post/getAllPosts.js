@@ -18,10 +18,8 @@ class GetAllPosts {
           code: item.userCode,
         });
 
-        // const likes = await this.likeRepository.getByCodePost(item.code);
         const likes = await this.likeRepository.getByCodePost(item.code);
 
-        // Mapeie os likes para incluir informações do usuário que curtiu
         const likeInfo = await Promise.all(
           likes.map(async (like) => {
             const liker = await this.userRepository.GetUserByCode({
